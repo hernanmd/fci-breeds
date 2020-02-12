@@ -45,13 +45,14 @@ class FciParser(core.Parser):
                 return urljoin(page['url'], el)
 
         item['name'] = text('//span[@id="ContentPlaceHolder1_NomEnLabel"]/text()')
+        item['group'] = text('string(//*[@id="ContentPlaceHolder1_GroupeHyperLink"])')
         item['section'] = text('//span[@id="ContentPlaceHolder1_SectionLabel"]/text()')
         item['country'] = text('//span[@id="ContentPlaceHolder1_PaysOrigineLabel"]/text()')
 
         imgUrl = url('//img[@id="ContentPlaceHolder1_IllustrationsRepeater_Image1_0"]/@src')
         if imgUrl: item['thumb'] = imgUrl
 
-        pdfUrl = url('//a[@id="ContentPlaceHolder1_StandardENHyperLink"]/@href')
+        pdfUrl = url('//a[@id="ContentPlaceHolder1_StandardESHyperLink"]/@href')
         if pdfUrl: item['pdf'] = pdfUrl
 
         provDate = text('//span[@id="ContentPlaceHolder1_DateReconnaissanceProvisoireLabel"]/text()')
